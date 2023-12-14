@@ -31,13 +31,13 @@ const BlogIndex = ({
 
       <Bio />
 
-      <ol style={{ listStyle: `none` }}>
+      <div style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.title
 
           return (
-            <li key={post.uri}>
               <article
+                key={post.uri}
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
@@ -52,10 +52,9 @@ const BlogIndex = ({
                 </header>
                 <section itemProp="description">{parse(post.excerpt)}</section>
               </article>
-            </li>
           )
         })}
-      </ol>
+      </div>
 
       {previousPagePath && (
         <>
