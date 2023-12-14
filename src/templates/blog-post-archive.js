@@ -2,9 +2,9 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+// import Bio from "../components/bio"
 
 const BlogIndex = ({
   data,
@@ -16,11 +16,8 @@ const BlogIndex = ({
     return (
       <Layout isHomePage>
         <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add posts to your WordPress site and they'll
-          appear here!
-        </p>
+
+        <p>No blog posts found. Add posts to your WordPress site and they'll appear here!</p>
       </Layout>
     )
   }
@@ -29,26 +26,24 @@ const BlogIndex = ({
     <Layout isHomePage>
       <Seo title="All posts" />
 
-      <Bio />
-
-      <div style={{ listStyle: `none` }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
         {posts.map(post => {
           const title = post.title
 
           return (
             <article
               key={post.uri}
-              className="post-list-item"
+              className="post-list-item bg-gray-200 p-6 rounded-xl shadow-lg overflow-hidden"
               itemScope
               itemType="http://schema.org/Article"
             >
               <header>
                 <h2>
-                  <Link to={post.uri} itemProp="url">
+                  <Link className="text-primary" to={post.uri} itemProp="url">
                     <span itemProp="headline">{parse(title)}</span>
                   </Link>
                 </h2>
-                <small>{post.date}</small>
+                <small className="">{post.date}</small>
               </header>
               <section itemProp="description">{parse(post.excerpt)}</section>
             </article>
@@ -56,13 +51,12 @@ const BlogIndex = ({
         })}
       </div>
 
-      {previousPagePath && (
-        <>
-          <Link to={previousPagePath}>Previous page</Link>
-          <br />
-        </>
-      )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+      <hr className="my-6" />
+
+      <nav className="blog-post-nav flex flex-wrap justify-between px-4 w-full">
+        {previousPagePath ? <Link className="text-accent" to={previousPagePath}>&laquo; Previous page</Link> : <p>&laquo; Previous page</p>}
+        {nextPagePath ? <Link className="text-accent justify-self-end" to={nextPagePath}>Next page &raquo;</Link> : <p>Next page &raquo;</p>}
+      </nav>
     </Layout>
   )
 }

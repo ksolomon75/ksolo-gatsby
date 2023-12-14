@@ -19,17 +19,26 @@ const Layout = ({ isHomePage, children }) => {
   `)
 
   return (
-    <div className="global-wrapper" data-is-root-path={isHomePage}>
-      <header className="global-header">
+    <div className="global-wrapper bg-gradient-to-b from-accent to-primary" data-is-root-path={isHomePage}>
+      <header className="global-header bg-gradient-to-r from-primary to-accent px-4 py-2 flex flex-row justify-between items-center">
         {isHomePage ? (
-          <h1 className="main-heading">
+          <h1 className="main-heading text-accent">
             <Link to="/">{parse(title)}</Link>
           </h1>
         ) : (
-          <Link className="header-link-home" to="/">
+          <Link className="header-link-home text-accent" to="/">
             {title}
           </Link>
         )}
+
+        <nav className="nav flex flex-row gap-4">
+          <Link className="header-link text-primary font-sans text-fontSize-3 hover:text-gray-500" to="/">
+            Home
+          </Link>
+          <Link className="header-link text-primary font-sans text-fontSize-3 hover:text-gray-500" to="/contact">
+            Contact Me
+          </Link>
+        </nav>
       </header>
 
       <main>{children}</main>

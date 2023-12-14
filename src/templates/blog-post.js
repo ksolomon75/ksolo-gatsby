@@ -11,9 +11,9 @@ import parse from "html-react-parser"
 import "../css/@wordpress/block-library/build-style/style.css"
 import "../css/@wordpress/block-library/build-style/theme.css"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+// import Bio from "../components/bio"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -26,14 +26,14 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
       <Seo title={post.title} description={post.excerpt} />
 
       <article
-        className="blog-post"
+        className="blog-post bg-gray-200 p-6 rounded-xl shadow-lg"
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
+        <header className="pb-6">
           <h1 itemProp="headline">{parse(post.title)}</h1>
 
-          <p>{post.date}</p>
+          <small>{post.date}</small>
 
           {/* if we have a featured image for this post let's display it */}
           {featuredImage?.data && (
@@ -48,40 +48,22 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
         {!!post.content && (
           <section itemProp="articleBody">{parse(post.content)}</section>
         )}
-
-        <hr />
-
-        <footer>
-          <Bio />
-        </footer>
       </article>
 
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.uri} rel="prev">
-                ← {parse(previous.title)}
-              </Link>
-            )}
-          </li>
+      <hr className="my-6" />
 
-          <li>
-            {next && (
-              <Link to={next.uri} rel="next">
-                {parse(next.title)} →
-              </Link>
-            )}
-          </li>
-        </ul>
+      <nav className="blog-post-nav flex flex-wrap justify-between">
+        {previous && (
+          <Link className="text-accent" to={previous.uri} rel="prev">
+            ← {parse(previous.title)}
+          </Link>
+        )}
+
+        {next && (
+          <Link className="text-accent" to={next.uri} rel="next">
+            {parse(next.title)} →
+          </Link>
+        )}
       </nav>
     </Layout>
   )

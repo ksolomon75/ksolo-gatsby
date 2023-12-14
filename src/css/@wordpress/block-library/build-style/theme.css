@@ -84,8 +84,9 @@
 .wp-block-code {
   font-family: Menlo, Consolas, monaco, monospace;
   color: #1e1e1e;
-  padding: 0.8em 1em;
-  border: 1px solid #ddd;
+  margin: 0 0 1.75em 0;
+  padding: 0.5em 1em;
+  border: 1px solid #4f5969;
   border-radius: 4px;
 }
 
@@ -171,6 +172,7 @@
 .wp-block-separator {
   border: none;
   border-bottom: 2px solid currentColor;
+  margin-bottom: 1.75em;
   margin-left: auto;
   margin-right: auto;
   opacity: 0.4;
