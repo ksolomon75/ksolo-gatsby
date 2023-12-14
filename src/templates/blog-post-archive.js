@@ -36,22 +36,22 @@ const BlogIndex = ({
           const title = post.title
 
           return (
-              <article
-                key={post.uri}
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={post.uri} itemProp="url">
-                      <span itemProp="headline">{parse(title)}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.date}</small>
-                </header>
-                <section itemProp="description">{parse(post.excerpt)}</section>
-              </article>
+            <article
+              key={post.uri}
+              className="post-list-item"
+              itemScope
+              itemType="http://schema.org/Article"
+            >
+              <header>
+                <h2>
+                  <Link to={post.uri} itemProp="url">
+                    <span itemProp="headline">{parse(title)}</span>
+                  </Link>
+                </h2>
+                <small>{post.date}</small>
+              </header>
+              <section itemProp="description">{parse(post.excerpt)}</section>
+            </article>
           )
         })}
       </div>
@@ -71,11 +71,7 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
-    allWpPost(
-      sort: { fields: [date], order: DESC }
-      limit: $postsPerPage
-      skip: $offset
-    ) {
+    allWpPost(sort: {date: DESC}, limit: $postsPerPage, skip: $offset) {
       nodes {
         excerpt
         uri
