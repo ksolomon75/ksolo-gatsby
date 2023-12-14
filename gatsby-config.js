@@ -7,6 +7,11 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: `KeithSolomon.net`,
+    description: `A posse ad esse (GatsbyJS)`,
+    author: `@KeithInWPG`,
+  },
   /**
    * Adding plugins to this array adds them to your Gatsby site.
    *
